@@ -114,7 +114,7 @@ model_xgb_cv <- xgb.cv(data=as.matrix(X_train), label=as.matrix(X_target), nfold
 model_xgb <- xgboost(data=as.matrix(X_train), label=as.matrix(X_target), objective="binary:logistic", nrounds=200, eta=0.05, max_depth=6, subsample=0.75, colsample_bytree=0.8, min_child_weight=1, eval_metric="auc")
 
 # CV: 0.8872
-# LB: 0.8820
+# LB: 0.8856
 
 # variable-importance of xgb
 

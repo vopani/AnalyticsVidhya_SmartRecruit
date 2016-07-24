@@ -88,14 +88,14 @@ X_target <- as.numeric(X_train$Business_Sourced)
 X_ids <- X_test$ID
 
 # normalizing order to [0,1]
-X_train <- X_train[, ":="(Percentile = (Order - Min_Order) / (Max_Order - Min_Order),
+X_train <- X_train[, ":="(Order_Percentile = (Order - Min_Order) / (Max_Order - Min_Order),
                           Order = NULL,
                           Max_Order = NULL,
                           Min_Order = NULL,
                           Application_Receipt_Date = NULL,
                           Business_Sourced = NULL)]
 
-X_test <- X_test[, ":="(Percentile = (Order - Min_Order) / (Max_Order - Min_Order),
+X_test <- X_test[, ":="(Order_Percentile = (Order - Min_Order) / (Max_Order - Min_Order),
                         Order = NULL,
                         Max_Order = NULL,
                         Min_Order = NULL,
@@ -118,8 +118,8 @@ model_xgb <- xgboost(data=as.matrix(X_train), label=as.matrix(X_target), objecti
 
 # variable-importance of xgb
 
-#             Feature               Gain      Cover     Frequence
-#1:                  Percentile 0.623868755 0.27400047 0.15058461
+#                    Feature        Gain      Cover     Frequence
+#1:            Order_Percentile 0.623868755 0.27400047 0.15058461
 #2:               Applicant_Age 0.061201384 0.12953506 0.14223307
 #3:          Applicant_City_PIN 0.051893086 0.10410755 0.10420146
 #4:            Manager_Business 0.048100187 0.08464180 0.10458692
